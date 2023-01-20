@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\APICatalogo_essencial.Net6.props" />
+</Project>
