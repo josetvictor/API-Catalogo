@@ -998,19 +998,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\joseb\\.nuget\\packages\\": {}
+    "C:\\Users\\jose\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\joseb\\Dev\\ApiCatalogo\\ApiCatalogo\\ApiCatalogo.csproj",
+      "projectUniqueName": "c:\\Users\\jose\\source\\personal_projects\\dotnetcore-essencial\\ApiCatalogo\\ApiCatalogo\\ApiCatalogo.csproj",
       "projectName": "ApiCatalogo",
-      "projectPath": "C:\\Users\\joseb\\Dev\\ApiCatalogo\\ApiCatalogo\\ApiCatalogo.csproj",
-      "packagesPath": "C:\\Users\\joseb\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\joseb\\Dev\\ApiCatalogo\\ApiCatalogo\\obj\\",
+      "projectPath": "c:\\Users\\jose\\source\\personal_projects\\dotnetcore-essencial\\ApiCatalogo\\ApiCatalogo\\ApiCatalogo.csproj",
+      "packagesPath": "C:\\Users\\jose\\.nuget\\packages\\",
+      "outputPath": "c:\\Users\\jose\\source\\personal_projects\\dotnetcore-essencial\\ApiCatalogo\\ApiCatalogo\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\joseb\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\jose\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1070,7 +1070,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
       }
     }
   }
