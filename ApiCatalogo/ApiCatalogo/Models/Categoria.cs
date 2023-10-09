@@ -25,5 +25,8 @@ public class Categoria
     [MaxLength(300)]
     public string? ImagemURL { get; set; }
 
+    // Criando uma collection de produtos eu digo ao EF que categoria vai possuir varios produtos
+    // Mas é preciso fazer uma inclusão de duas propriedades no modelo de produto, uma de categoria e uma de categoriaId,
+    // para indicar que o produto está relacionado a uma categoria
     public ICollection<Produto>? Produtos { get; set; }
 }

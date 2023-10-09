@@ -2,12 +2,10 @@ using APICatalogo_essencial.Net6.Context;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 
+// Configure Services class
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers().AddJsonOptions(op => op.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -19,7 +17,7 @@ builder.Services.AddDbContext<AppCatalogoContext>(op =>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configure class
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

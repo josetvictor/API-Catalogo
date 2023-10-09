@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jose\\source\\personal_projects\\dotnetcore-essencial\\ApiCatalogo\\ApiCatalogo\\ApiCatalogo.csproj": {}
+    "C:\\Users\\jose\\Source\\personal_projects\\dotnetcore-essencial\\ApiCatalogo\\ApiCatalogo\\ApiCatalogo.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jose\\source\\personal_projects\\dotnetcore-essencial\\ApiCatalogo\\ApiCatalogo\\ApiCatalogo.csproj": {
+    "C:\\Users\\jose\\Source\\personal_projects\\dotnetcore-essencial\\ApiCatalogo\\ApiCatalogo\\ApiCatalogo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jose\\source\\personal_projects\\dotnetcore-essencial\\ApiCatalogo\\ApiCatalogo\\ApiCatalogo.csproj",
+        "projectUniqueName": "C:\\Users\\jose\\Source\\personal_projects\\dotnetcore-essencial\\ApiCatalogo\\ApiCatalogo\\ApiCatalogo.csproj",
         "projectName": "ApiCatalogo",
-        "projectPath": "C:\\Users\\jose\\source\\personal_projects\\dotnetcore-essencial\\ApiCatalogo\\ApiCatalogo\\ApiCatalogo.csproj",
+        "projectPath": "C:\\Users\\jose\\Source\\personal_projects\\dotnetcore-essencial\\ApiCatalogo\\ApiCatalogo\\ApiCatalogo.csproj",
         "packagesPath": "C:\\Users\\jose\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jose\\source\\personal_projects\\dotnetcore-essencial\\ApiCatalogo\\ApiCatalogo\\obj\\",
+        "outputPath": "C:\\Users\\jose\\Source\\personal_projects\\dotnetcore-essencial\\ApiCatalogo\\ApiCatalogo\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\jose\\AppData\\Roaming\\NuGet\\NuGet.Config",
