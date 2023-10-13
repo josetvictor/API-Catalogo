@@ -1,7 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using ApiCatalogo.Validations;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
-using APICatalogo_essencial.Net6.Validations;
 
 namespace APICatalogo_essencial.Net6.Models;
 
@@ -37,4 +37,22 @@ public class Produto
     // JSONIgnore é usado para descartar a propriedade na serialização do objeto
     [JsonIgnore]
     public Categoria? Categoria { get; set; }
+
+    // Validação a nivel de model
+    public IEnumerable<ValidationResult> Validade(ValidationContext validationContext)
+    {
+        if (!string.IsNullOrEmpty(this.Nome))
+        {
+            var primeiraLetra = this.Nome.ToString()[0].ToString();
+            if (primeiraLetra != primeiraLetra.ToUpper())
+            {
+                yield return new ValidationResult("A primeira letra do produto deve ser maiúscula", new[] { nameof(this.Nome) });
+            }
+        }
+
+        if (this.Estoque <= 0)
+        {
+            yield return new ValidationResult("O estoque deve ser maior que zero", new[] { nameof(this.Estoque) });
+        }
+    }
 }
