@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
+using APICatalogo_essencial.Net6.Validations;
 
 namespace APICatalogo_essencial.Net6.Models;
 
@@ -12,6 +13,7 @@ public class Produto
 
     [Required]
     [StringLength(80)]
+    [PrimeiraLetraMaiuscula]
     public string? Nome { get; set; }
 
     [Required]
@@ -32,6 +34,7 @@ public class Produto
 
     public int CategoriaId { get; set; }
 
+    // JSONIgnore é usado para descartar a propriedade na serialização do objeto
     [JsonIgnore]
     public Categoria? Categoria { get; set; }
 }

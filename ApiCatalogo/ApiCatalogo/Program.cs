@@ -5,6 +5,7 @@ using System.Text.Json.Serialization;
 // Configure Services class
 var builder = WebApplication.CreateBuilder(args);
 
+// ignorando objetos quando um ciclo de referência é detectado durante a serialização
 builder.Services.AddControllers().AddJsonOptions(op => op.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
