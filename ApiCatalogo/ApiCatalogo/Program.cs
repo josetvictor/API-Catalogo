@@ -1,5 +1,7 @@
+using ApiCatalogo.DTOs.Mappings;
 using ApiCatalogo.Repository;
 using APICatalogo_essencial.Net6.Context;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 
@@ -10,6 +12,13 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers().AddJsonOptions(op => op.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+var mappingConfig = new MapperConfiguration(mc => {
+    mc.AddProfile(new MappingProfile());
+});
+
+IMapper mapper = mappingConfig.CreateMapper();
+builder.Services.AddSingleton(mapper);
 
 var mySqlConnection = builder.Configuration.GetConnectionString("DefaultConnection");
 
