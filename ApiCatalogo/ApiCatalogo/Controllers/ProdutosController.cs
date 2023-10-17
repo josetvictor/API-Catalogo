@@ -1,8 +1,11 @@
-﻿using APICatalogo_essencial.Net6.Context;
-using APICatalogo_essencial.Net6.Models;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+
+using ApiCatalogo.Repository;
+
+using APICatalogo_essencial.Net6.Context;
+using APICatalogo_essencial.Net6.Models;
 
 namespace APICatalogo_essencial.Net6.Controllers
 {
@@ -10,9 +13,9 @@ namespace APICatalogo_essencial.Net6.Controllers
     [ApiController]
     public class ProdutosController : ControllerBase
     {
-        private readonly AppCatalogoContext _context;
+        private readonly IUnitOfWork _context;
 
-        public ProdutosController(AppCatalogoContext context)
+        public ProdutosController(IUnitOfWork context)
         {
             _context = context;
         }
@@ -20,17 +23,19 @@ namespace APICatalogo_essencial.Net6.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Produto>> Get()
         {
-            var produtos = _context.Produtos.ToList();
+            var produtos = _context.ProdutoRepository.Get().ToList();
             if (produtos is null)
                 return NotFound("Nenhum produto encontrado");
 
             return Ok(produtos);
         }
 
-        [HttpGet("{id:int}", Name ="ObterProduto")]
+        // api/produtos/1
+        [HttpGet("{id:int:min(1)}", Name ="ObterProduto")]
         public ActionResult<Produto> Get(int id)
         {
-            var produto = _context.Produtos.FirstOrDefault(p => p.Id == id);
+            var produto = _context.ProdutoRepository.GetById(p => p.Id == id);
+
             if (produto is null)
                 return NotFound("Produto não encontrado");
 
@@ -43,8 +48,8 @@ namespace APICatalogo_essencial.Net6.Controllers
             if (produto is null)
                 return BadRequest();
 
-            _context.Produtos.Add(produto);
-            _context.SaveChanges();
+            _context.ProdutoRepository.Add(produto);
+            _context.Commit();
 
             return new CreatedAtRouteResult("ObterProduto", new { id = produto.Id }, produto);
         }
@@ -55,8 +60,8 @@ namespace APICatalogo_essencial.Net6.Controllers
             if(id != produto.Id)
                 return BadRequest();
 
-            _context.Entry(produto).State = EntityState.Modified; 
-            _context.SaveChanges();
+            _context.ProdutoRepository.Update(produto); 
+            _context.Commit();
 
             return Ok(produto);
         }
@@ -64,13 +69,13 @@ namespace APICatalogo_essencial.Net6.Controllers
         [HttpDelete("{id:int}")]
         public ActionResult Delete(int id)
         {
-            var produto = _context.Produtos.FirstOrDefault(p => p.Id == id);
+            var produto = _context.ProdutoRepository.GetById(p => p.Id == id);
 
             if (produto is null)
                 return NotFound("Produto não localizado...");
 
-            _context.Produtos.Remove(produto);
-            _context.SaveChanges();
+            _context.ProdutoRepository.Delete(produto);
+            _context.Commit();
 
             return Ok(produto);
         }

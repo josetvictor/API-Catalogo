@@ -1,3 +1,4 @@
+using ApiCatalogo.Repository;
 using APICatalogo_essencial.Net6.Context;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
@@ -15,6 +16,8 @@ var mySqlConnection = builder.Configuration.GetConnectionString("DefaultConnecti
 builder.Services.AddDbContext<AppCatalogoContext>(op =>
     op.UseMySql(mySqlConnection, ServerVersion.AutoDetect(mySqlConnection))
     );
+
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 var app = builder.Build();
 
