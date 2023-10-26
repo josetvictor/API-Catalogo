@@ -2,8 +2,11 @@ using ApiCatalogo.DTOs.Mappings;
 using ApiCatalogo.Repository;
 using APICatalogo_essencial.Net6.Context;
 using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 using System.Text.Json.Serialization;
 
 // Configure Services class
@@ -28,6 +31,22 @@ builder.Services.AddDbContext<AppCatalogoContext>(op => op.UseMySql(mySqlConnect
 builder.Services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<AppCatalogoContext>()
                 .AddDefaultTokenProviders();
+
+builder.Services.AddAuthentication(
+    JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(op => 
+        op.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidAudience = builder.Configuration["TokenConfiguration:Audience"],
+            ValidIssuer = builder.Configuration["TokenConfiguration:Issuer"],
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(builder.Configuration["Jwt:key"])
+            )
+        }
+    );
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
