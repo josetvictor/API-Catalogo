@@ -49,18 +49,18 @@ Os tipos de retorno que temos na ASPNET são:
 - Uma interface de `IActionResult`;
 - Uma `ActionResult<T>` de um tipo
 
-### Data Annotations
+## Data Annotations
 
 Os Atributos `Data Annotations` permitem aplicar a validação no modelo de domínio, assim, quando o modelo é usando nas Actions, o framework verifica se o objeto é valido com base nos atributos `Data Annotations`.
 
 Um exemplo pratico é usar acima de uma propriedade de um modelo entre colchetes: `[Atributo]`
 
-### Validações
+## Validações
 É possivel criar validações e usar como Data Annotations como no exemplo feito no diretorio de `Validations`.
 
 Outra forma de realizar validações é a nivel de modelo, incrementando o metodo da interface `IValidataObject`. Esse exemplo pode ser visto no modelo de Produtos no diretorio de produtos desse projeto.
 
-### Middleware
+## Middleware
 
 De forma bem resumida, middleware são trechos de codigo que encapsula uma determinada logica necessarias, podendo ter varios trechos desses codigos a serem executados entre um request e um response de uma API Aspnet. Esses trechos de codigos geralmente precisam ter uma ordem correta de execução. No exemplo de um projeto Aspnet MVC existe um middleware chamado de MVC que define o mapeamento e envio dos requests para o controlador, mas antes da execução desse middleware é preciso ser executado o middleware de Authorization, que habilita a funcionada de delegar o acesso de um recurso a um perfil. Nesse caso é preciso se precaver quanto a ordem de execução desses trechos de codigo.
 
@@ -76,3 +76,17 @@ Além disso foi me apresentado um outro padrão que não conhecia, o `Unit of Wo
 Em algumas experiências passadas já utilizei a pratica de DTO utilizando o AutoMapper. A nomeclatura que usava-se no projeto era diferente mas o conceito é o mesmo. Quando utilizamos algum ORM como o EF por exemplo, que utilizamos dos nossos modelos de dominio para construir nosso banco de dados, e não é uma boa pratica utilizarmos os modelos de dominio para apresentarmos os dados a um cliente, assim é preciso utilizar um modelo, que seria nosso Data Transfer Object para fazermos o mapeamento das informações que desejamos mostrar ao cliente.
 
 No exemplo de um modelo de produto, onde é construido por, nome, preço e quantidade em estoque, não queremos mostrar quantos desse produto tem no estoque por exemplo, nesse caso, nosso DTO só tera apenas as informações de Nome e preço por exemplo. Como pra realizar esse mapeamento de forma manual, é massante e bem repetitivo, podemos usar a biblioteca AutoMapper para fazer um mapeamento de forma mais dinamica e pratica para um projeto grande.
+
+## Segurança
+
+Autenticação x Autorização.
+
+### Implementações de Autenticação e Autorização
+
+- Identity (forma nativa da plataforma);
+- Provedores Externos;
+- Autenticação com servidor;
+- Autenticação baseada em Tokens
+
+No projeto API Catalogo, realizei a implementação de uma autenticação baseada em tokens usando o conceito de JWT.
+

@@ -2,6 +2,7 @@ using ApiCatalogo.DTOs.Mappings;
 using ApiCatalogo.Repository;
 using APICatalogo_essencial.Net6.Context;
 using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 
@@ -22,9 +23,11 @@ builder.Services.AddSingleton(mapper);
 
 var mySqlConnection = builder.Configuration.GetConnectionString("DefaultConnection");
 
-builder.Services.AddDbContext<AppCatalogoContext>(op =>
-    op.UseMySql(mySqlConnection, ServerVersion.AutoDetect(mySqlConnection))
-    );
+builder.Services.AddDbContext<AppCatalogoContext>(op => op.UseMySql(mySqlConnection, ServerVersion.AutoDetect(mySqlConnection)));
+
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<AppCatalogoContext>()
+                .AddDefaultTokenProviders();
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
@@ -38,6 +41,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
