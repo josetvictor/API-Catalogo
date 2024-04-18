@@ -1,4 +1,5 @@
 using ApiCatalogo.DTOs.Mappings;
+using ApiCatalogo.Middleware;
 using ApiCatalogo.Repository;
 using APICatalogo_essencial.Net6.Context;
 using AutoMapper;
@@ -57,7 +58,8 @@ builder.Services.AddSingleton(mapper);
 
 var mySqlConnection = builder.Configuration.GetConnectionString("DefaultConnection");
 
-builder.Services.AddDbContext<AppCatalogoContext>(op => op.UseMySql(mySqlConnection, ServerVersion.AutoDetect(mySqlConnection)));
+// builder.Services.AddDbContext<AppCatalogoContext>(op => op.UseMySql(mySqlConnection, ServerVersion.AutoDetect(mySqlConnection)));
+builder.Services.AddDbContext<AppCatalogoContext>(op => op.UseSqlServer(mySqlConnection));
 
 builder.Services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<AppCatalogoContext>()
@@ -89,6 +91,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware(typeof(GlobalErrorHandlingMiddleware));
 
 app.UseHttpsRedirection();
 

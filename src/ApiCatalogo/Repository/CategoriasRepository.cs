@@ -6,7 +6,6 @@ namespace ApiCatalogo.Repository;
 
 public class CategoriasRepository : Repository<Categoria>, ICategoriaRepository
 {
-    protected AppCatalogoContext _context;
 
     public CategoriasRepository(AppCatalogoContext context) : base(context)
     {

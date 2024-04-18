@@ -1,4 +1,5 @@
-﻿using APICatalogo_essencial.Net6.Context;
+﻿using ApiCatalogo.Exceptions;
+using APICatalogo_essencial.Net6.Context;
 using APICatalogo_essencial.Net6.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -43,9 +44,12 @@ namespace APICatalogo_essencial.Net6.Controllers
         [HttpGet("{id:int}", Name = "ObterCategoria")]
         public ActionResult<Categoria> Get(int id)
         {
+
+            if (id <= 0) throw new BadRequestException("Id Invalido");
+
             var categoria = _context.Categorias.FirstOrDefault(p => p.Id == id);
             if (categoria is null)
-                return NotFound("categoria não encontrado");
+                throw new NotFoundException("categoria não encontrado");
 
             return Ok(categoria);
         }
